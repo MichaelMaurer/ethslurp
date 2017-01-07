@@ -38,7 +38,7 @@ SFBool CWebAPI::checkKey(CConfig& config)
 {
 	key      = config.GetProfileStringGH("SETTINGS", "api_key",      EMPTY);
 	provider = config.GetProfileStringGH("SETTINGS", "api_provider", "EtherScan");
-	url      = config.GetProfileStringGH("SETTINGS", "api_url",      "http://etherscan.io/apis");
+	url      = config.GetProfileStringGH("SETTINGS", "api_url",      "https://api.etherscan.io/api");
 
 	if (!key.IsEmpty())
 		return TRUE;
@@ -64,7 +64,7 @@ SFBool CWebAPI::checkKey(CConfig& config)
 	// save the key for later
 	config.SetProfileString("SETTINGS", "api_key",      key);
 	config.SetProfileString("SETTINGS", "api_provider", "EtherScan");
-	config.SetProfileString("SETTINGS", "api_url",      "http://etherscan.io/apis");
+	config.SetProfileString("SETTINGS", "api_url",      "https://api.etherscan.io/api");
 
 	CVersion version;
 	version.setVersion(VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD);
@@ -77,4 +77,9 @@ SFBool CWebAPI::checkKey(CConfig& config)
 SFString CWebAPI::getKey(void) const
 {
 	return key;
+}
+
+SFString CWebAPI::getUrl(void) const
+{
+	return url;
 }

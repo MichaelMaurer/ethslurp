@@ -224,12 +224,13 @@ SFBool CSlurperApp::Slurp(CSlurpOptions& options, SFString& message)
 #endif
 		while (!done)
 		{
-			SFString url = SFString("https://api.etherscan.io/api?module=account&action=txlist&sort=asc") +
+			SFString url = SFString(api.getUrl() +
+						"?module=account&action=txlist&sort=asc" +
 						"&address=" + theAccount.addr +
 						"&page="    + asString(page) +
 						"&offset="  +
 						asString(options.pageSize) +
-						"&apikey="  + api.getKey();
+						"&apikey="  + api.getKey());
 
 			// Grab a page of data from the web api
 			SFString thisPage = urlToString(url);
@@ -578,6 +579,7 @@ SFBool establishFolders(CConfig& config, const SFString& vers)
 	}
 
 	SFString configFilename = configPath("ethslurp.conf");
+
 	config.setFilename(configFilename);
 	if (SFos::folderExists(cachePath()) && SFos::fileExists(configFilename))
 	{

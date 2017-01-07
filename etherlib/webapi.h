@@ -39,6 +39,7 @@ public:
 
 	SFBool    checkKey (CConfig& config);
 	SFString  getKey   (void) const;
+	SFString  getUrl   (void) const;
 };
 
 #endif
